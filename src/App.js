@@ -1,6 +1,8 @@
 import React from 'react'
 import Router from './Router'
+import 'bootstrap/dist/css/bootstrap.css'
 import './App.css'
+import './css/style.css'
 
 function App() {
   return (
