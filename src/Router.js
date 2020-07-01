@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 // views
 import Home from './views/Home'
 import About from './views/About'
+import Login from './views/Login'
 
 const Router = () => {
   return (
@@ -13,6 +14,7 @@ const Router = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/login" component={Login} />
       </Switch>
     </BrowserRouter>
   )
