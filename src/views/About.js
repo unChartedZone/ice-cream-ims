@@ -1,13 +1,20 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 
-class About extends React.Component {
-  render() {
-    return (
-      <section>
-        <h1>About Me</h1>
-      </section>
-    )
+const About = () => {
+  const headerStyles = {
+    fontSize: '8rem',
+    color: 'white',
   }
+
+  const location = useLocation()
+  console.log('Location: ', location.pathname)
+
+  return (
+    <section>
+      <h1 style={headerStyles}>About Us</h1>
+    </section>
+  )
 }
 
 export default About
