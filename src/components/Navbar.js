@@ -1,21 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const Navbar = () => {
-  let routes = [
-    {
-      name: 'Home',
-      path: '/',
-    },
-    {
-      name: 'About',
-      path: '/about',
-    },
-    {
-      name: 'Pricing',
-      path: '/',
-    },
+  const routes = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Pricing', path: '/' },
   ]
+
+  const dashboardRoutes = [
+    { name: 'Home', path: '/dashboard' },
+    { name: 'Customers', path: '/customers' },
+  ]
+
+  let location = useLocation()
 
   return (
     <nav
@@ -36,18 +34,31 @@ const Navbar = () => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
+      {location.pathname === '/dashboard'
+        ? console.log('On dashboard!')
+        : console.log('Not on dashboard!')}
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          {routes.map((route) => {
-            return (
-              <li className="nav-item">
-                <Link className="nav-link" to={route.path}>
-                  {route.name}
-                </Link>
-              </li>
-            )
-          })}
+          {location.pathname !== '/dashboard'
+            ? routes.map((route) => {
+                return (
+                  <li className="nav-item" key={route.name}>
+                    <Link className="nav-link" to={route.path}>
+                      {route.name}
+                    </Link>
+                  </li>
+                )
+              })
+            : dashboardRoutes.map((route) => {
+                return (
+                  <li className="nav-item" key={route.name}>
+                    <Link className="nav-link" to={route.path}>
+                      {route.name}
+                    </Link>
+                  </li>
+                )
+              })}
           {/* <li className="nav-item">
             <Link className="nav-link" to="/">
               Home
