@@ -9,20 +9,34 @@ const Navbar = () => {
   ]
 
   const dashboardRoutes = [
-    { name: 'Home', path: '/dashboard' },
     { name: 'Customers', path: '/customers' },
+    { name: 'Inventory', path: '/inventory' },
+    { name: 'Products', path: '/products' },
+    { name: 'Purchase', path: '/purchase' },
+    { name: 'Sales', path: '/sales' },
+    { name: 'Users', path: '/users' },
   ]
 
-  let location = useLocation()
+  const isDashboard = useLocation().pathname === '/dashboard/'
+
+  console.log(useLocation().pathname)
 
   return (
     <nav
       id="navbar-container"
       className="navbar navbar-expand-lg fixed-top navbar-dark bg-light"
     >
-      <Link className="navbar-brand" to="/">
-        Tom and Adam's Ice Cream
-      </Link>
+      {!isDashboard ? (
+        <Link className="navbar-brand" to="/">
+          Tom and Adam's Ice Cream
+        </Link>
+      ) : (
+        <a className="navbar-brand" href="dashboard.php">
+          <span role="img" aria-label="Ice Cream Emoji">
+            &#x1F366;
+          </span>
+        </a>
+      )}
       <button
         className="navbar-toggler"
         type="button"
@@ -34,13 +48,9 @@ const Navbar = () => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      {location.pathname === '/dashboard'
-        ? console.log('On dashboard!')
-        : console.log('Not on dashboard!')}
-
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          {location.pathname !== '/dashboard'
+          {!isDashboard
             ? routes.map((route) => {
                 return (
                   <li className="nav-item" key={route.name}>
@@ -59,21 +69,6 @@ const Navbar = () => {
                   </li>
                 )
               })}
-          {/* <li className="nav-item">
-            <Link className="nav-link" to="/">
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/about">
-              About Us
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/">
-              Pricing
-            </Link>
-          </li> */}
         </ul>
         {/* <button
             id="loginButton"
