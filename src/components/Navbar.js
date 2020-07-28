@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, matchPath } from 'react-router-dom'
 
 const Navbar = () => {
   const routes = [
@@ -9,33 +9,32 @@ const Navbar = () => {
   ]
 
   const dashboardRoutes = [
-    { name: 'Customers', path: '/customers' },
-    { name: 'Inventory', path: '/inventory' },
-    { name: 'Products', path: '/products' },
-    { name: 'Purchase', path: '/purchase' },
-    { name: 'Sales', path: '/sales' },
-    { name: 'Users', path: '/users' },
+    { name: 'Customers', path: '/dashboard/customers' },
+    { name: 'Inventory', path: '/dashboard/inventory' },
+    { name: 'Products', path: '/dashboard/products' },
+    { name: 'Purchase', path: '/dashboard/purchase' },
+    { name: 'Sales', path: '/dashboard/sales' },
+    { name: 'Users', path: '/dashboard/users' },
   ]
 
-  const isDashboard = useLocation().pathname === '/dashboard/'
-
-  console.log(useLocation().pathname)
+  const match = matchPath(useLocation().pathname, { path: '/dashboard/' })
+  const isDashboardRoute = match && match.path === '/dashboard/'
 
   return (
     <nav
       id="navbar-container"
       className="navbar navbar-expand-lg fixed-top navbar-dark bg-light"
     >
-      {!isDashboard ? (
+      {!isDashboardRoute ? (
         <Link className="navbar-brand" to="/">
           Tom and Adam's Ice Cream
         </Link>
       ) : (
-        <a className="navbar-brand" href="dashboard.php">
+        <Link className="navbar-brand" to="/dashboard">
           <span role="img" aria-label="Ice Cream Emoji">
             &#x1F366;
           </span>
-        </a>
+        </Link>
       )}
       <button
         className="navbar-toggler"
@@ -50,7 +49,7 @@ const Navbar = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
-          {!isDashboard
+          {!isDashboardRoute
             ? routes.map((route) => {
                 return (
                   <li className="nav-item" key={route.name}>
@@ -70,15 +69,20 @@ const Navbar = () => {
                 )
               })}
         </ul>
-        {/* <button
-            id="loginButton"
-            className="btn btn-outline-light my-2 my-sm-0"
-          >
+        {!isDashboardRoute ? (
+          <Link className="btn btn-outline-light my-2 my-sm-0" to="/login">
             Log In
-          </button> */}
-        <Link className="btn btn-outline-light my-2 my-sm-0" to="/login">
-          Log In
-        </Link>
+          </Link>
+        ) : (
+          <ul className=" my-2 my-lg-0">
+            <button id="printButton" className="btn minty-button mr-sm-2">
+              Print Table
+            </button>
+            <button id="signout" className="btn minty-button my-2 my-sm-0">
+              Sign Out
+            </button>
+          </ul>
+        )}
       </div>
     </nav>
   )
