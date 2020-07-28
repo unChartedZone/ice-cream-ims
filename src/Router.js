@@ -1,6 +1,6 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+// import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 import Navbar from './components/Navbar'
 
@@ -13,17 +13,17 @@ import Dashboard from './views/Dashboard'
 // const location = withRouter()
 // console.log('LOCATION: ', location)
 
-const AnimatedSwitch = withRouter(({ location }) => (
-  <TransitionGroup>
-    <CSSTransition key={location.key} classNames="slide" timeout={1000}>
-      <Switch location={location}>
-        <Route path="/" component={Home} exact />
-        <Route path="/about" component={About} />
-        <Route path="/login" component={Login} />
-      </Switch>
-    </CSSTransition>
-  </TransitionGroup>
-))
+// const AnimatedSwitch = withRouter(({ location }) => (
+//   <TransitionGroup>
+//     <CSSTransition key={location.key} classNames="slide" timeout={1000}>
+//       <Switch location={location}>
+//         <Route path="/" component={Home} exact />
+//         <Route path="/about" component={About} />
+//         <Route path="/login" component={Login} />
+//       </Switch>
+//     </CSSTransition>
+//   </TransitionGroup>
+// ))
 
 // const Router = () => {
 //   return (
