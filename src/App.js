@@ -2,6 +2,7 @@ import React from 'react'
 import Router from './Router'
 import 'bootstrap/dist/css/bootstrap.css'
 import './css/style.css'
+import './App.css'
 
 function App() {
   return (
