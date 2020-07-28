@@ -2,11 +2,10 @@ import React from 'react'
 import { Switch, Route, useRouteMatch } from 'react-router-dom'
 
 import Customers from './dashboard/Customers'
+import Inventory from './dashboard/Inventory'
 
 const Dashboard = () => {
-  let { path, url } = useRouteMatch()
-  console.log('Path: ', path)
-  console.log('Url: ', url)
+  let { path } = useRouteMatch()
 
   return (
     <Switch>
@@ -19,12 +18,8 @@ const Dashboard = () => {
           </div>
         </div>
       </Route>
-      <Route exact path={`${path}/fuck`}>
-        {/* <Customers /> */}
-        <div>
-          <h1>CAN YOU FUCKING SEE THIS</h1>
-        </div>
-      </Route>
+      <Route path={`${path}/customers`} component={Customers} />
+      <Route path={`${path}/inventory`} component={Inventory} />
     </Switch>
   )
 }
