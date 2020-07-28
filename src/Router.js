@@ -11,15 +11,15 @@ import Dashboard from './views/Dashboard'
 const Router = () => {
   return (
     <BrowserRouter>
-      <div>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
-          <Route exact path="/login" component={Login} />
-          <Route path="/dashboard" component={Dashboard} />
-        </Switch>
-      </div>
+      {/* <div> */}
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/about" component={About} />
+        <Route exact path="/login" component={Login} />
+        <Route path="/dashboard" component={Dashboard} />
+      </Switch>
+      {/* </div> */}
     </BrowserRouter>
   )
 }
